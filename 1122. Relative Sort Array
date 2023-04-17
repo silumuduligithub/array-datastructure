@@ -1,0 +1,61 @@
+
+// for leetcode
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int num : arr1){
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        int[] res = new int[arr1.length];
+        int k = 0;
+        Set<Integer> set = new HashSet<>();
+        for(int num : arr2){
+            if(map.containsKey(num)){
+                int i = map.get(num);
+                while(i-- > 1)res[k++] = num;
+            }
+            set.add(num);
+            res[k++] = num;
+        }
+        Arrays.sort(arr1);
+        for(int num : arr1){
+            if(!set.contains(num))res[k++] = num;
+        }
+        return res;
+    }
+}
+
+class Solution{
+    // A1[] : the input array-1
+    // N : size of the array A1[]
+    // A2[] : the input array-2
+    // M : size of the array A2[]
+    
+    //Function to sort an array according to the other array.
+    public static int[] sortA1ByA2(int arr1[], int N, int arr2[], int M)
+    {
+       HashMap<Integer, Integer> map = new HashMap<>();
+        for(int num : arr1){
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        int[] res = new int[arr1.length];
+        int k = 0;
+        Set<Integer> set = new HashSet<>();
+        for(int num : arr2){
+            if(map.containsKey(num)){
+                int i = map.get(num);
+				int count = 1;
+                while(count <= i){
+					res[k++] = num;
+					count++;
+                }
+            set.add(num);
+			}
+        }
+        Arrays.sort(arr1);
+        for(int num : arr1){
+            if(!set.contains(num))res[k++] = num;
+        }
+        return res;
+    }
+}
